@@ -82,12 +82,12 @@ async function doClassicConnection( mockPlanData ) {
 	await ( await MyPlanPage.init( page ) ).returnToWPAdmin();
 }
 
-export async function doInPlaceConnection() {
+export async function doInPlaceConnection( plan = 'free' ) {
 	const jetpackPage = await JetpackPage.init( page );
 	await jetpackPage.connect();
 
 	await ( await InPlaceAuthorizeFrame.init( page ) ).approve();
-	await ( await InPlacePlansPage.init( page ) ).selectFreePlan();
+	await ( await InPlacePlansPage.init( page ) ).select( plan );
 }
 
 export async function syncJetpackPlanData( plan, mockPlanData = true ) {
