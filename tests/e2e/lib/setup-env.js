@@ -174,6 +174,8 @@ global.it = async ( name, func ) => {
 
 export const step = async ( stepName, fn ) => {
 	reporter.startStep( stepName );
+	console.log( '!!!!!!', stepName );
+
 	await fn();
 	reporter.endStep();
 };
