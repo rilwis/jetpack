@@ -207,6 +207,7 @@ catchBeforeAll( async () => {
 	}
 
 	await execWpCommand( 'wp config set JETPACK_SHOULD_USE_CONNECTION_IFRAME true' );
+	await page.reload();
 } );
 
 afterEach( async () => {
