@@ -23,6 +23,7 @@ export const settings = {
 	),
 
 	icon,
+
 	category: getCategoryWithFallbacks( 'media', 'layout' ),
 	keywords: [
 		_x( 'juxtapose', 'block search term', 'jetpack' ),
