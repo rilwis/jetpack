@@ -167,10 +167,7 @@ function JetpackContactFormEdit( {
 			return;
 		}
 
-		const error = e.target.value
-			.split( ',' )
-			.map( validateEmail )
-			.filter( Boolean );
+		const error = e.target.value.split( ',' ).map( validateEmail ).filter( Boolean );
 
 		if ( error && error.length ) {
 			setEmailErrors( error );
