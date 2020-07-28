@@ -158,16 +158,6 @@ class MyPlanHeader extends React.Component {
 					title: __( 'Jetpack Anti-Spam', 'jetpack' ),
 				};
 
-			case 'is-anti-spam-plan':
-				return {
-					details: expiration,
-					icon: `${ imagePath }/products/product-jetpack-anti-spam.svg`,
-					tagLine: __(
-						'Automatically clear spam from comments and forms. Save time, get more responses, give your visitors a better experience – all without lifting a finger.'
-					),
-					title: __( 'Jetpack Anti-Spam' ),
-				};
-
 			default:
 				return {
 					isPlaceholder: true,
