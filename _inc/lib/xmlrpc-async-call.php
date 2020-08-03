@@ -1,9 +1,44 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName
 
+/**
+ * Make XMLRPC async calls to WordPress.com
+ *
+ * This class allows you to enqueue XMLRPC calls that will be grouped and sent
+ * at once in a multi-call request at shutdown.
+ *
+ * Usage:
+ *
+ * require_lib( 'xmlrpc-async-call' );
+ * Jetpack_Xmlrpc_Async_Call::add_call( 'methodName', get_current_user_id(), $arg1, $arg2, etc... )
+ *
+ * See Jetpack_Xmlrpc_Async_Call::add_call for details
+ */
 class Jetpack_Xmlrpc_Async_Call {
 
-	static $clients = array();
+	/**
+	 * Hold the IXR Clients that will be dispatched at shutdown
+	 *
+	 * Clients are stored in the following schema:
+	 * [
+	 *  $blog_id => [
+	 *    $user_id => [
+	 *      arrat of Jetpack_IXR_ClientMulticall
+	 *    ]
+	 *  ]
+	 * ]
+	 *
+	 * @var array
+	 */
+	public static $clients = array();
 
+	/**
+	 * Undocumented function
+	 *
+	 * @param string  $method The XML-RPC method.
+	 * @param integer $user_id The user ID used to make the request (will use this user's token); Use 0 for the blog token.
+	 * @param mixed   ...$args This function accepts any number of additional arguments, that will be passed to the call.
+	 * @return void
+	 */
 	public static function add_call( $method, $user_id = 0, ...$args ) {
 		global $blog_id;
 
@@ -23,7 +58,6 @@ class Jetpack_Xmlrpc_Async_Call {
 
 		array_unshift( $args, $method );
 
-		// TODO -> parse args removing user id.
 		call_user_func_array( array( self::$clients[ $client_blog_id ][ $user_id ], 'addCall' ), $args );
 
 		if ( false === has_action( 'shutdown', array( 'Jetpack_Xmlrpc_Async_Call', 'do_calls' ) ) ) {
@@ -31,6 +65,11 @@ class Jetpack_Xmlrpc_Async_Call {
 		}
 	}
 
+	/**
+	 * Trigger the calls at shutdown
+	 *
+	 * @return void
+	 */
 	public static function do_calls() {
 		if ( is_multisite() ) {
 			self::do_calls_multisite();
@@ -39,6 +78,11 @@ class Jetpack_Xmlrpc_Async_Call {
 		}
 	}
 
+	/**
+	 * Trigger the calls when in a multi-site environment
+	 *
+	 * @return void
+	 */
 	private static function do_calls_multisite() {
 		foreach ( self::$clients as $client_blog_id => $blog_clients ) {
 			if ( 0 === $client_blog_id ) {
@@ -64,6 +108,11 @@ class Jetpack_Xmlrpc_Async_Call {
 		}
 	}
 
+	/**
+	 * Trigger the calls in a single site environment
+	 *
+	 * @return void
+	 */
 	private static function do_calls_single_site() {
 		if ( ! isset( self::$clients[0] ) ) {
 			return;
