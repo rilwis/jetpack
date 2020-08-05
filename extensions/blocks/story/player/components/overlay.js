@@ -15,6 +15,7 @@ import { createElement, useCallback } from '@wordpress/element';
  * Internal dependencies
  */
 import { DecoratedButton } from './button';
+import { PlayIcon, ReplayIcon, CloseIcon, NavigateBeforeIcon, NavigateNextIcon } from './icons';
 
 export default function Overlay( {
 	playing,
@@ -69,43 +70,27 @@ export default function Overlay( {
 		>
 			<div className="wp-story-prev-slide" onClick={ onPreviousSlideHandler }>
 				{ hasPrevious && (
-					<DecoratedButton
-						size={ 44 }
-						iconSize={ 24 }
-						label="Previous Slide"
-						icon="navigate_before"
-						className="outlined-w"
-					/>
+					<DecoratedButton size={ 44 } label="Previous Slide" className="outlined-w">
+						<NavigateBeforeIcon size={ 24 } />
+					</DecoratedButton>
 				) }
 			</div>
 			<div className="wp-story-next-slide" onClick={ onNextSlideHandler }>
 				{ hasNext && (
-					<DecoratedButton
-						size={ 44 }
-						iconSize={ 24 }
-						label="Next Slide"
-						icon="navigate_next"
-						className="outlined-w"
-					/>
+					<DecoratedButton size={ 44 } label="Next Slide" className="outlined-w">
+						<NavigateNextIcon size={ 24 } />
+					</DecoratedButton>
 				) }
 			</div>
 			{ tapToPlayPause && ! playing && ! ended && (
-				<DecoratedButton
-					size={ 80 }
-					iconSize={ 56 }
-					label="Play Story"
-					icon="play_arrow"
-					onClick={ onPlayPressed }
-				/>
+				<DecoratedButton size={ 80 } label="Play Story" onClick={ onPlayPressed }>
+					<PlayIcon size={ 56 } />
+				</DecoratedButton>
 			) }
 			{ ended && (
-				<DecoratedButton
-					size={ 80 }
-					iconSize={ 56 }
-					label="Replay Story"
-					icon="replay"
-					onClick={ onPlayPressed }
-				/>
+				<DecoratedButton size={ 80 } label="Replay Story" onClick={ onPlayPressed }>
+					<ReplayIcon size={ 56 } />
+				</DecoratedButton>
 			) }
 		</div>
 	);
