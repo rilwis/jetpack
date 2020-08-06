@@ -16,8 +16,19 @@
 		}
 	}
 
-	.donations__amount:not( .donations__custom-amount ) .wp-block-button__link {
-		cursor: pointer;
+	.donations__amount:not( .donations__custom-amount ) {
+		.wp-block-button__link {
+			cursor: pointer;
+		}
+
+		&:hover .wp-block-button__link {
+			background-color: $light-gray-100;
+		}
+
+		&.is-active .wp-block-button__link {
+			background-color: $blue-wordpress-700;
+			color: $white;
+		}
 	}
 
 	.donations__amount-value {
@@ -33,5 +44,10 @@
 		&:focus {
 			outline: none;
 		}
+	}
+
+	.donations__donate-button.is-disabled {
+		pointer-events: none;
+		opacity: 0.2;
 	}
 }
