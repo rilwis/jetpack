@@ -227,10 +227,9 @@ class Jetpack_Search_Customize {
 		$wp_customize->add_setting(
 			$id,
 			array(
-				'default'           => '1',
-				'sanitize_callback' => 'rest_sanitize_boolean',
-				'transport'         => 'postMessage',
-				'type'              => 'option',
+				'default'   => '1',
+				'transport' => 'postMessage',
+				'type'      => 'option',
 			)
 		);
 		$wp_customize->add_control(
@@ -246,10 +245,9 @@ class Jetpack_Search_Customize {
 		$wp_customize->add_setting(
 			$id,
 			array(
-				'default'           => '1',
-				'sanitize_callback' => 'rest_sanitize_boolean',
-				'transport'         => 'postMessage',
-				'type'              => 'option',
+				'default'   => '1',
+				'transport' => 'postMessage',
+				'type'      => 'option',
 			)
 		);
 		$wp_customize->add_control(
@@ -261,14 +259,13 @@ class Jetpack_Search_Customize {
 			)
 		);
 
-		$id = $setting_prefix . 'show_powered_by';
+		$id = $setting_prefix . 'show_powered_by1';
 		$wp_customize->add_setting(
 			$id,
 			array(
-				'default'           => '1',
-				'sanitize_callback' => 'rest_sanitize_boolean',
-				'transport'         => 'postMessage',
-				'type'              => 'option',
+				'default'   => '1',
+				'transport' => 'postMessage',
+				'type'      => 'option',
 			)
 		);
 		$wp_customize->add_control(

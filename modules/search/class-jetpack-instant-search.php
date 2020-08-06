@@ -131,7 +131,7 @@ class Jetpack_Instant_Search extends Jetpack_Search {
 				'opacity'         => (int) get_option( $prefix . 'opacity', 97 ),
 				'overlayTrigger'  => get_option( $prefix . 'overlay_trigger', 'immediate' ),
 				'resultFormat'    => get_option( $prefix . 'result_format', 'minimal' ),
-				'showPoweredBy'   => get_option( $prefix . 'show_powered_by', '1' ) === '1',
+				'showPoweredBy'   => get_option( $prefix . 'show_powered_by1', '1' ) === '1',
 			),
 
 			// core config.
