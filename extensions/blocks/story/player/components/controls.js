@@ -13,10 +13,18 @@ import { PauseIcon, PlayIcon, VolumeOffIcon, VolumeUpIcon } from './icons';
 export default function Controls( { playing, muted, setPlaying, setMuted } ) {
 	return (
 		<div className="wp-story-controls">
-			<SimpleButton label={ __( 'Play', 'jetpack' ) } onClick={ () => setPlaying( ! playing ) }>
+			<SimpleButton
+				isPressed={ playing }
+				label={ __( 'Play', 'jetpack' ) }
+				onClick={ () => setPlaying( ! playing ) }
+			>
 				{ playing ? <PauseIcon /> : <PlayIcon /> }
 			</SimpleButton>
-			<SimpleButton label={ __( 'Mute', 'jetpack' ) } onClick={ () => setMuted( ! muted ) }>
+			<SimpleButton
+				isPressed={ muted }
+				label={ __( 'Mute', 'jetpack' ) }
+				onClick={ () => setMuted( ! muted ) }
+			>
 				{ muted ? <VolumeOffIcon /> : <VolumeUpIcon /> }
 			</SimpleButton>
 		</div>
